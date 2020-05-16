@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        name:
+          [
+            ubuntu-latest-gcc-cmake,
+            ubuntu-latest-clang-cmake,
+          ]
+        include:
+          - name: ubuntu-latest-gcc-cmake
+            os: ubuntu-latest
+            cc: gcc
+            cxx: g++
+
+          - name: ubuntu-latest-clang-cmake
+            os: ubuntu-latest
+            cc: clang
+            cxx: clang++
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Checkout googletest
+      uses: actions/checkout@v2
+      with:
+        repository: google/googletest
+        path: third_party/googletest
+
+    - name: Configure
+      env:
+        CC: ${{ matrix.cc }}
+        CXX: ${{ matrix.cxx }}
+      run: cmake -H$GITHUB_WORKSPACE -B_build
+
+    - name: Build
+      run: cmake --build $GITHUB_WORKSPACE/_build
+
+    - name: Test
+      run: |
+        cmake -E chdir $GITHUB_WORKSPACE/_build/ ctest -V
