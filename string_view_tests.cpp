@@ -1,7 +1,7 @@
-#include "string_view.h"
+#include "jerryct/string_view.h"
 #include <gtest/gtest.h>
 
-namespace view {
+namespace jerryct {
 namespace {
 
 TEST(StringViewTest, WhenDefaultConstructed) {
@@ -258,4 +258,4 @@ TEST(StringViewTest, Back_WhenEmpty) { //
 }
 
 } // namespace
-} // namespace view
+} // namespace jerryct

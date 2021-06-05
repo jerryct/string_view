@@ -1,5 +1,5 @@
-#ifndef STRING_VIEW_H
-#define STRING_VIEW_H
+#ifndef JERRYCT_STRING_VIEW_H
+#define JERRYCT_STRING_VIEW_H
 
 #include <cstring>
 #include <limits>
@@ -14,7 +14,7 @@ struct ContractViolation {};
     }                                                                                                                  \
   } while (false)
 
-namespace view {
+namespace jerryct {
 
 template <typename CharT, typename Traits = std::char_traits<CharT>> class basic_string_view {
 public:
@@ -251,6 +251,6 @@ constexpr bool operator>=(const basic_string_view<CharT, Traits> lhs,
 
 using string_view = basic_string_view<char>;
 
-} // namespace view
+} // namespace jerryct
 
-#endif // STRING_VIEW_H
+#endif // JERRYCT_STRING_VIEW_H
