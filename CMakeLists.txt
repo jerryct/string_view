@@ -18,7 +18,6 @@ if (JERRYCT_STRING_VIEW_ENABLE_TESTING)
   add_subdirectory(third_party/googletest _build/googletest)
   add_executable(unit_tests
     string_view_tests.cpp
-    double_include.cpp
   )
   target_link_libraries(unit_tests
     PRIVATE
