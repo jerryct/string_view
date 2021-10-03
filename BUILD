@@ -6,7 +6,7 @@ cc_library(
 
 cc_test(
     name = "test",
-    srcs = ["string_view_tests.cpp"],
+    srcs = ["jerryct/string_view_tests.cpp"],
     deps = [
         ":string_view",
         "@com_google_googletest//:gtest_main",
